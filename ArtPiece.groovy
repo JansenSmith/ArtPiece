@@ -38,10 +38,10 @@ println "Moving piece into position"
 piece = piece.toXMin().toYMin().toZMin()
 
 println "Moving description into position"
-desc = desc.mirrorx().movex(piece.totalX)
+desc = desc.mirrorx().movex(piece.totalX)//.toZMin()
 
 println "Moving signature into position"
-sig = sig.mirrorx()
+sig = sig.mirrorx()//.toZMin()
 
 println "Combine description and signature geometries"
 CSG combin = sig.union(desc)
@@ -87,7 +87,7 @@ combin = combin.setColor(javafx.scene.paint.Color.DARKRED)
 						//.toZMin()//move it down to the flat surface
 			})
 
-def ret = combin
+def ret = [desc, sig]
 
 return ret
 
