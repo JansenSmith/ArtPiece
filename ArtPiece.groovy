@@ -1,20 +1,30 @@
 import eu.mihosoft.vrl.v3d.*
 
-def name = "mechEng"
+//def name = "mechEng"
+def name = "boynton"
 
-//if (name.equals("mechEng")){
-//	println "YES"
-//} else{
-//	println "NO"
-//}
-//return name
 
-println "Loading piece STL from repo"
 // Load an STL file from a git repo
 // Loading a local file also works here
-File pieceSTL = ScriptingEngine.fileFromGit(
-	"https://github.com/JansenSmith/ArtPiece.git",
-	"source_stl/WorcesterFreeInstitute_MechanicalEngineers_zoomed_Front_250x141.stl");
+File pieceSTL
+println "Loading piece STL from repo based on piece name: "+name
+switch (name) {
+    case "mechEng":
+		pieceSTL = ScriptingEngine.fileFromGit(
+			"https://github.com/JansenSmith/ArtPiece.git",
+			"source_stl/WorcesterFreeInstitute_MechanicalEngineers_zoomed_Front_250x141.stl");
+        break
+    case "boynton":
+        pieceSTL = ScriptingEngine.fileFromGit(
+			"https://github.com/JansenSmith/ArtPiece.git",
+			"source_stl/WorcesterFreeInstitute_BoyntonHall_Front_250x147.stl");
+        break
+    default:
+        println "Unknown option: $name"
+        break
+}
+
+
 // Load the .CSG from the disk and cache it in memory
 CSG piece  = Vitamins.get(pieceSTL);
 
@@ -41,7 +51,7 @@ println "Moving description into position"
 desc = desc.mirrorx().movex(piece.totalX).toZMin()
 
 println "Moving signature into position"
-sig = sig.mirrorx()//.toZMin()
+sig = sig.mirrorx().toZMin()
 
 //println "Combine description and signature geometries"
 //CSG combin = sig.union(desc)
