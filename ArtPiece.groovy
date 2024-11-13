@@ -46,11 +46,11 @@ sig = sig.mirrorx()
 println "Combine description and signature geometries"
 CSG combin = sig.union(desc)
 
-println "Removing description and signature geometries from the piece"
-piece = piece.difference(combin)
+//println "Removing description and signature geometries from the piece"
+//piece = piece.difference(combin)
 //piece = piece.difference(sig)
 
-
+println "Done!"
 piece = piece.setColor(javafx.scene.paint.Color.DARKGRAY)
 			.setName(name+"_piece")
 			.addAssemblyStep(0, new Transform())
@@ -78,7 +78,16 @@ sig = sig.setColor(javafx.scene.paint.Color.DARKRED)
 						//.toZMin()//move it down to the flat surface
 			})
 
-def ret = [piece, desc, sig]
+combin = combin.setColor(javafx.scene.paint.Color.DARKRED)
+			.setName(name+"_addenda")
+			.addAssemblyStep(0, new Transform())
+			.setManufacturing({ toMfg ->
+				return toMfg
+						//.rotx(180)// fix the orientation
+						//.toZMin()//move it down to the flat surface
+			})
+
+def ret = combin
 
 return ret
 
