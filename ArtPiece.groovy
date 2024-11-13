@@ -38,13 +38,13 @@ println "Moving piece into position"
 piece = piece.toXMin().toYMin().toZMin()
 
 println "Moving description into position"
-desc = desc.mirrorx().movex(piece.totalX)//.toZMin()
+desc = desc.mirrorx().movex(piece.totalX).toZMin()
 
 println "Moving signature into position"
 sig = sig.mirrorx()//.toZMin()
 
-println "Combine description and signature geometries"
-CSG combin = sig.union(desc)
+//println "Combine description and signature geometries"
+//CSG combin = sig.union(desc)
 
 //println "Removing description and signature geometries from the piece"
 //piece = piece.difference(combin)
@@ -78,14 +78,14 @@ sig = sig.setColor(javafx.scene.paint.Color.DARKRED)
 						//.toZMin()//move it down to the flat surface
 			})
 
-combin = combin.setColor(javafx.scene.paint.Color.DARKRED)
-			.setName(name+"_addenda")
-			.addAssemblyStep(0, new Transform())
-			.setManufacturing({ toMfg ->
-				return toMfg
-						//.rotx(180)// fix the orientation
-						//.toZMin()//move it down to the flat surface
-			})
+//combin = combin.setColor(javafx.scene.paint.Color.DARKRED)
+//			.setName(name+"_addenda")
+//			.addAssemblyStep(0, new Transform())
+//			.setManufacturing({ toMfg ->
+//				return toMfg
+//						//.rotx(180)// fix the orientation
+//						//.toZMin()//move it down to the flat surface
+//			})
 
 def ret = [desc, sig]
 
