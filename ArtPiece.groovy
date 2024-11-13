@@ -24,7 +24,7 @@ CSG desc =  (CSG)ScriptingEngine.gitScriptRun(
 	                              "ArtText.groovy" , // file to load
 	                              null// no parameters (see next tutorial)
                         )
-
+//return desc
 
 println "Loading signature CSG via factory"
 CSG sig =  (CSG)ScriptingEngine.gitScriptRun(
