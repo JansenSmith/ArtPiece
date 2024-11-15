@@ -59,7 +59,7 @@ println "Combine description and signature geometries"
 CSG combin = sig.union(desc)
 
 println "Creating a base that contains the texts"
-def solid_space = 0.48
+def solid_space = 0.08
 def base = new Cube(piece.totalX,piece.totalY,combin.totalZ + solid_space).toCSG()
 				.toXMin().toYMin().toZMin()
 base = base.difference(combin)//.movez(solid_space))
@@ -110,7 +110,7 @@ combin = combin.setColor(javafx.scene.paint.Color.DARKRED)
 			})
 			
 base = base.setColor(javafx.scene.paint.Color.DARKGRAY)
-			.setName(name+"_piece")
+			.setName(name+"_base")
 			.addAssemblyStep(0, new Transform())
 			.setManufacturing({ toMfg ->
 				return toMfg
