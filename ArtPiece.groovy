@@ -48,19 +48,31 @@ println "Moving piece into position"
 piece = piece.toXMin().toYMin().toZMin()
 
 println "Moving description into position"
-desc = desc.mirrorx().movex(piece.totalX).toZMin()
+desc = desc.toZMin()
+desc = desc.mirrorx().movex(piece.totalX)
 
 println "Moving signature into position"
-sig = sig.mirrorx().toZMin()
+sig = sig.toZMin().movex(piece.totalX)
+sig = sig.mirrorx().movex(piece.totalX)
 
-//println "Combine description and signature geometries"
-//CSG combin = sig.union(desc)
+println "Combine description and signature geometries"
+CSG combin = sig.union(desc)
+
+println "Creating a base that contains the texts"
+def solid_space = 0.48
+def base = new Cube(piece.totalX,piece.totalY,combin.totalZ + solid_space).toCSG()
+				.toXMin().toYMin().toZMin()
+base = base.difference(combin)//.movez(solid_space))
+
+//println "Adding the base to the piece"
+//piece = piece.union(base.toZMax())
+//				.toZMin()
 
 //println "Removing description and signature geometries from the piece"
 //piece = piece.difference(combin)
 //piece = piece.difference(sig)
 
-println "Done!"
+println "Setting CSG attributes"
 piece = piece.setColor(javafx.scene.paint.Color.DARKGRAY)
 			.setName(name+"_piece")
 			.addAssemblyStep(0, new Transform())
@@ -88,16 +100,27 @@ sig = sig.setColor(javafx.scene.paint.Color.DARKRED)
 						//.toZMin()//move it down to the flat surface
 			})
 
-//combin = combin.setColor(javafx.scene.paint.Color.DARKRED)
-//			.setName(name+"_addenda")
-//			.addAssemblyStep(0, new Transform())
-//			.setManufacturing({ toMfg ->
-//				return toMfg
-//						//.rotx(180)// fix the orientation
-//						//.toZMin()//move it down to the flat surface
-//			})
+combin = combin.setColor(javafx.scene.paint.Color.DARKRED)
+			.setName(name+"_addenda")
+			.addAssemblyStep(0, new Transform())
+			.setManufacturing({ toMfg ->
+				return toMfg
+						//.rotx(180)// fix the orientation
+						//.toZMin()//move it down to the flat surface
+			})
+			
+base = base.setColor(javafx.scene.paint.Color.DARKGRAY)
+			.setName(name+"_piece")
+			.addAssemblyStep(0, new Transform())
+			.setManufacturing({ toMfg ->
+				return toMfg
+						//.rotx(180)// fix the orientation
+						//.toZMin()//move it down to the flat surface
+			})
 
-def ret = [desc, sig]
+def ret = base
+
+println "Done!"
 
 return ret
 
