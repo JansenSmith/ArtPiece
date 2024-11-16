@@ -56,7 +56,7 @@ sig = sig.toZMin().movex(piece.totalX)
 sig = sig.mirrorx().movex(piece.totalX)
 
 println "Combine description and signature geometries"
-CSG combin = sig.union(desc)
+CSG combin = sig.dumbUnion(desc)
 
 println "Creating a base that contains the texts"
 def solid_space = 0.08
@@ -64,9 +64,9 @@ def base = new Cube(piece.totalX,piece.totalY,combin.totalZ + solid_space).toCSG
 				.toXMin().toYMin().toZMin()
 base = base.difference(combin)//.movez(solid_space))
 
-//println "Adding the base to the piece"
-//piece = piece.union(base.toZMax())
-//				.toZMin()
+println "Adding the base to the piece"
+piece = piece.dumbUnion(base.toZMax())
+				.toZMin()
 
 //println "Removing description and signature geometries from the piece"
 //piece = piece.difference(combin)
@@ -110,7 +110,7 @@ combin = combin.setColor(javafx.scene.paint.Color.DARKRED)
 			})
 			
 base = base.setColor(javafx.scene.paint.Color.DARKGRAY)
-			.setName(name+"_base")
+			.setName(name+"_base_dumbunion")
 			.addAssemblyStep(0, new Transform())
 			.setManufacturing({ toMfg ->
 				return toMfg
@@ -118,7 +118,7 @@ base = base.setColor(javafx.scene.paint.Color.DARKGRAY)
 						//.toZMin()//move it down to the flat surface
 			})
 
-def ret = base
+def ret = [piece, combin]
 
 println "Done!"
 
