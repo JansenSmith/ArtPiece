@@ -121,7 +121,7 @@ base = base.setColor(javafx.scene.paint.Color.DARKGRAY)
 						//.toZMin()//move it down to the flat surface
 			})
 
-def ret = [piece, combin]
+def ret = [combin]
 
 println "Done!"
 
