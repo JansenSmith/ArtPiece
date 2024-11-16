@@ -27,6 +27,7 @@ switch (name) {
 
 // Load the .CSG from the disk and cache it in memory
 CSG piece  = Vitamins.get(pieceSTL);
+println "The original piece STL is "+piece.totalZ+"mm in height"
 
 println "Loading description CSG via factory"
 CSG desc =  (CSG)ScriptingEngine.gitScriptRun(
@@ -63,10 +64,12 @@ def solid_space = 0.08
 def base = new Cube(piece.totalX,piece.totalY,combin.totalZ + solid_space).toCSG()
 				.toXMin().toYMin().toZMin()
 base = base.difference(combin)//.movez(solid_space))
+println "The base is "+base.totalZ+"mm in height"
 
 println "Adding the base to the piece"
 piece = piece.dumbUnion(base.toZMax())
 				.toZMin()
+println "The resultant piece is "+piece.totalZ+"mm in height"
 
 //println "Removing description and signature geometries from the piece"
 //piece = piece.difference(combin)
