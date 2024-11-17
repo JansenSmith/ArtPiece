@@ -1,8 +1,10 @@
 import eu.mihosoft.vrl.v3d.*
 
-//def name = "mechEng"
-def name = "boynton"
+def name = "mechEng"
+//def name = "boynton"
 
+//println "Clearing the Vitamins cache to make sure current geometry is being used (only run this operation when the STL has changed)"
+//Vitamins.clear()
 
 // Load an STL file from a git repo
 // Loading a local file also works here
@@ -59,24 +61,24 @@ sig = sig.mirrorx().movex(piece.totalX)
 println "Combine description and signature geometries"
 CSG addenda = sig.union(desc)
 
-println "Creating a base that contains the sig (debug)"
+//println "Creating a base that contains the sig (debug)"
+//def solid_space = 0.08
+//def base = new Cube(piece.totalX,piece.totalY,addenda.totalZ + solid_space).toCSG()
+//				.toXMin().toYMin().toZMin()
+//base = base.difference(sig)//.movez(solid_space))
+//println "The base is "+base.totalZ+"mm in height"
+
+println "Creating a base that contains the texts"
 def solid_space = 0.08
 def base = new Cube(piece.totalX,piece.totalY,addenda.totalZ + solid_space).toCSG()
 				.toXMin().toYMin().toZMin()
-base = base.difference(sig)//.movez(solid_space))
+base = base.difference(addenda)//.movez(solid_space))
 println "The base is "+base.totalZ+"mm in height"
 
-//println "Creating a base that contains the texts"
-//def solid_space = 0.08
-//def base = new Cube(piece.totalX,piece.totalY,combin.totalZ + solid_space).toCSG()
-//				.toXMin().toYMin().toZMin()
-//base = base.difference(combin)//.movez(solid_space))
-//println "The base is "+base.totalZ+"mm in height"
-//
-//println "Adding the base to the piece"
-//piece = piece.dumbUnion(base.toZMax())
-//				.toZMin()
-//println "The resultant piece is "+piece.totalZ+"mm in height"
+println "Adding the base to the piece"
+piece = piece.dumbUnion(base.toZMax())
+				.toZMin()
+println "The resultant piece is "+piece.totalZ+"mm in height"
 
 //println "Removing description and signature geometries from the piece"
 //piece = piece.difference(combin)
@@ -128,7 +130,7 @@ base = base.setColor(javafx.scene.paint.Color.DARKGRAY)
 						//.toZMin()//move it down to the flat surface
 			})
 
-def ret = base // options: 
+def ret = [piece, addenda] // options: 
 
 println "Done!"
 
