@@ -57,19 +57,26 @@ sig = sig.toZMin().movex(piece.totalX)
 sig = sig.mirrorx().movex(piece.totalX)
 
 println "Combine description and signature geometries"
-CSG combin = sig.dumbUnion(desc)
+CSG addenda = sig.union(desc)
 
-println "Creating a base that contains the texts"
+println "Creating a base that contains the sig (debug)"
 def solid_space = 0.08
-def base = new Cube(piece.totalX,piece.totalY,combin.totalZ + solid_space).toCSG()
+def base = new Cube(piece.totalX,piece.totalY,addenda.totalZ + solid_space).toCSG()
 				.toXMin().toYMin().toZMin()
-base = base.difference(combin)//.movez(solid_space))
+base = base.difference(sig)//.movez(solid_space))
 println "The base is "+base.totalZ+"mm in height"
 
-println "Adding the base to the piece"
-piece = piece.dumbUnion(base.toZMax())
-				.toZMin()
-println "The resultant piece is "+piece.totalZ+"mm in height"
+//println "Creating a base that contains the texts"
+//def solid_space = 0.08
+//def base = new Cube(piece.totalX,piece.totalY,combin.totalZ + solid_space).toCSG()
+//				.toXMin().toYMin().toZMin()
+//base = base.difference(combin)//.movez(solid_space))
+//println "The base is "+base.totalZ+"mm in height"
+//
+//println "Adding the base to the piece"
+//piece = piece.dumbUnion(base.toZMax())
+//				.toZMin()
+//println "The resultant piece is "+piece.totalZ+"mm in height"
 
 //println "Removing description and signature geometries from the piece"
 //piece = piece.difference(combin)
@@ -103,7 +110,7 @@ sig = sig.setColor(javafx.scene.paint.Color.DARKRED)
 						//.toZMin()//move it down to the flat surface
 			})
 
-combin = combin.setColor(javafx.scene.paint.Color.DARKRED)
+addenda = addenda.setColor(javafx.scene.paint.Color.DARKRED)
 			.setName(name+"_addenda")
 			.addAssemblyStep(0, new Transform())
 			.setManufacturing({ toMfg ->
@@ -113,7 +120,7 @@ combin = combin.setColor(javafx.scene.paint.Color.DARKRED)
 			})
 			
 base = base.setColor(javafx.scene.paint.Color.DARKGRAY)
-			.setName(name+"_base_dumbunion")
+			.setName(name+"_base")
 			.addAssemblyStep(0, new Transform())
 			.setManufacturing({ toMfg ->
 				return toMfg
@@ -121,7 +128,7 @@ base = base.setColor(javafx.scene.paint.Color.DARKGRAY)
 						//.toZMin()//move it down to the flat surface
 			})
 
-def ret = [combin]
+def ret = base // options: 
 
 println "Done!"
 
