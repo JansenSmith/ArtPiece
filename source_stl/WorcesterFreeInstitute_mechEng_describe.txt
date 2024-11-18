@@ -1,0 +1,15 @@
+Project: WorcesterFreeInstitute_mechEng.hfp
+Print at 100% infill with a layer height of 0.08mm with a base layer of 0.08mm
+
+ The Model is 250x141.42mm in size
+ You may print at higher layer heights below the Min Depth of 0.16mm
+ The Max Depth is 5mm and the Actual Depth is 3.6mm
+
+Filaments Used:
+	PLA Paramount3D Flesh - EBRL8028_2322C Transmission Distance: 1.6
+	PLA PolyLite Natural Transmission Distance: 26
+This print uses 2 unique filaments
+
+Swap Instructions:
+	Start with Flesh - EBRL8028_2322C
+	At layer #3 (0.24mm) swap to Natural for the rest.
