@@ -3,8 +3,8 @@ import eu.mihosoft.vrl.v3d.*
 def name = "mechEng"
 //def name = "boynton"
 
-//println "Clearing the Vitamins cache to make sure current geometry is being used (only run this operation when the STL has changed)"
-//Vitamins.clear()
+println "Clearing the Vitamins cache to make sure current geometry is being used (only run this operation when the STL has changed)"
+Vitamins.clear()
 
 // Load an STL file from a git repo
 // Loading a local file also works here
@@ -14,7 +14,7 @@ switch (name) {
     case "mechEng":
 		pieceSTL = ScriptingEngine.fileFromGit(
 			"https://github.com/JansenSmith/ArtPiece.git",
-			"source_stl/WorcesterFreeInstitute_MechanicalEngineers_zoomed_Front_250x141.stl");
+			"source_stl/WorcesterFreeInstitute_mechEng_Front_250x141.stl");
         break
     case "boynton":
         pieceSTL = ScriptingEngine.fileFromGit(
