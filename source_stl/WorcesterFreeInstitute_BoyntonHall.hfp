@@ -5,7 +5,7 @@
     "border_width": 6.349999904632568,
     "borderless": false,
     "bright_adjust_zero": false,
-    "brightness_compensation_name": "Dim 2",
+    "brightness_compensation_name": "Snake Accordion",
     "bw_tolerance": 8,
     "depth_mode": 2,
     "extra_gap": 2,
@@ -43,11 +43,11 @@
     "light_intensity": 20,
     "light_temperature": 1,
     "lighting_visualizer": 0,
-    "luminance_factor": 8,
+    "luminance_factor": 24,
     "luminance_method": 3,
     "luminance_offset": 0,
     "luminance_offset_max": 100,
-    "luminance_power": 1,
+    "luminance_power": 7.4,
     "luminance_weight": 100,
     "max_depth": 5.039999961853027,
     "median": 0,
@@ -58,7 +58,7 @@
     "reverse_litho": true,
     "slider_values": [
         2,
-        35
+        44
     ],
     "smoothing": 2,
     "srgb_linearize": false,

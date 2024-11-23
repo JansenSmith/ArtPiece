@@ -3,7 +3,7 @@ Print at 100% infill with a layer height of 0.08mm with a base layer of 0.08mm
 
  The Model is 250x147.26mm in size
  You may print at higher layer heights below the Min Depth of 0.16mm
- The Max Depth is 5mm and the Actual Depth is 2.9mm
+ The Max Depth is 5mm and the Actual Depth is 3.6mm
 
 Filaments Used:
 	PLA Paramount3D Flesh - EBRL8028_2322C Transmission Distance: 1.6
