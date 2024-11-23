@@ -1,7 +1,7 @@
 Project: Pandemonium.hfp
 Print at 100% infill with a layer height of 0.08mm with a base layer of 0.08mm
 
- The Model is 200x131.95mm in size
+ The Model is 250x164.93mm in size
  You may print at higher layer heights below the Min Depth of 0.16mm
  The Max Depth is 6mm and the Actual Depth is 6.1mm
 
