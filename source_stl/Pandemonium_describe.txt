@@ -1,19 +1,19 @@
 Project: Pandemonium.hfp
 Print at 100% infill with a layer height of 0.08mm with a base layer of 0.08mm
 
- The Model is 250x164.93mm in size
+ The Model is 236x155.7mm in size
  You may print at higher layer heights below the Min Depth of 0.16mm
- The Max Depth is 6mm and the Actual Depth is 6.1mm
+ The Max Depth is 6mm and the Actual Depth is 5.8mm
 
 Filaments Used:
-	PLA Hatchbox Trans Yellow Transmission Distance: 60
-	PLA Hatchbox Trans Orange Transmission Distance: 60
-	PLA Hatchbox Trans Red Transmission Distance: 60
+	PLA Hatchbox Trans Yellow Transmission Distance: 1e+02
+	PLA Hatchbox Trans Orange Transmission Distance: 80
+	PLA Hatchbox Trans Red Transmission Distance: 40
 	PLA Hatchbox Trans Black Transmission Distance: 60
 This print uses 4 unique filaments
 
 Swap Instructions:
 	Start with Trans Yellow
-	At layer #15 (1.2mm) swap to Trans Orange
-	At layer #33 (2.64mm) swap to Trans Red
-	At layer #64 (5.12mm) swap to Trans Black for the rest.
+	At layer #10 (0.8mm) swap to Trans Orange
+	At layer #27 (2.16mm) swap to Trans Red
+	At layer #51 (4.08mm) swap to Trans Black for the rest.
