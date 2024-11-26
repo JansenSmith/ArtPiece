@@ -5,6 +5,11 @@ import eu.mihosoft.vrl.v3d.*
 def name = "pandemonium"
 ArrayList<Object> desc_params = new ArrayList<Object>();
 desc_params.add(name) //add 
+ArrayList<Object> borders_params = new ArrayList<Object>()
+borders_params.add(name)
+
+def border_width = 7
+def border_thickness = 4
 
 
 //println "Clearing the Vitamins cache to make sure current geometry is being used (only run this operation when the STL has changed)"
@@ -68,6 +73,28 @@ CSG sig =  (CSG)ScriptingEngine.gitScriptRun(
 println "Moving piece into position"
 piece = piece.toXMin().toYMin().toZMin()
 
+borders_params.add(piece.totalX)
+borders_params.add(piece.totalY)
+borders_params.add(border_width)
+borders_params.add(border_thickness)
+CSG borders
+switch(name) {
+	case ["mechEng", "boynton"]:
+		break
+	case "pandemonium":
+		println "Loading borders CSG via factory"
+		borders =  (CSG)ScriptingEngine.gitScriptRun(
+										"https://github.com/JansenSmith/ArtBorders.git", // git location of the library
+										  "ArtBorders.groovy" , // file to load
+										  borders_params // send the factory the name param
+								)
+		piece = piece.dumbUnion(borders)
+		break
+	default:
+		println "Unknown option: $name"
+		break
+}
+
 switch(name) {
 	case ["mechEng", "boynton"]:
 		println "Moving description into position"
@@ -118,7 +145,7 @@ println "The base is "+base.totalZ+"mm in Z thickness"
 println "Adding the base to the piece"
 piece = piece.dumbUnion(base.toZMax())
 				.toZMin()
-println "The resultant piece is "+piece.totalZ+"mm in Z thickness"
+println "The resultant piece is "+piece.totalX+"mm in X width, "+piece.totalY+"mm in Y height, "+piece.totalZ+"mm in Z thickness, "
 
 //println "Removing description and signature geometries from the piece"
 //piece = piece.difference(combin)
