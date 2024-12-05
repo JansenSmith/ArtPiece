@@ -2,7 +2,8 @@ import eu.mihosoft.vrl.v3d.*
 
 //def name = "mechEng"
 //def name = "boynton"
-def name = "pandemonium"
+//def name = "pandemonium"
+def name = "trotting"
 ArrayList<Object> desc_params = new ArrayList<Object>();
 desc_params.add(name) //add 
 ArrayList<Object> borders_params = new ArrayList<Object>()
@@ -12,8 +13,8 @@ def border_width = 7
 def border_thickness = 4
 
 
-//println "Clearing the Vitamins cache to make sure current geometry is being used (only run this operation when the STL has changed)"
-//Vitamins.clear()
+println "Clearing the Vitamins cache to make sure current geometry is being used (only run this operation when the STL has changed)"
+Vitamins.clear()
 
 // Load an STL file from a git repo
 // Loading a local file also works here
@@ -89,6 +90,7 @@ switch(name) {
 										  borders_params // send the factory the name param
 								)
 		piece = piece.dumbUnion(borders)
+		piece = piece.toXMin().toYMin()
 		break
 	default:
 		println "Unknown option: $name"
@@ -110,8 +112,18 @@ switch(name) {
 
 
 println "Moving signature into position"
-sig = sig.toZMin().movex(piece.totalX)
-sig = sig.mirrorx().movex(piece.totalX)
+switch(name) {
+	case ["mechEng", "boynton"]:
+		sig = sig.toZMin().movex(piece.totalX)
+		sig = sig.mirrorx().movex(piece.totalX)
+		break
+	case "pandemonium":
+		sig = sig.toZMin().movex(piece.totalX).movex(-5)
+		break
+	default:
+		println "Unknown option: $name"
+		break
+}
 
 
 CSG addenda
